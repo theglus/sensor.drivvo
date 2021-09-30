@@ -4,56 +4,56 @@
 
 ![logo.jpg](logo.png)
 
-Componente customizado para obter informações presentes no [drivvo.com](https://www.drivvo.com/pt) para o home assistant.
+Custom component to put data from [drivvo.com](https://www.drivvo.com/pt) for use as sensors in Home Assistant.
 
-# Instalação
+# Installation Instructions
 
 ## HACS
 
-- Tenha o [HACS](https://hacs.xyz/) instalado, isso permitirá que você atualize facilmente.
-- Adicione https://github.com/hudsonbrendon/sensor.drivvo como um repositório personalizado do Tipo: Integração
-- Clique em Instalar na integração "Drivvo".
-- Reinicie Home-Assistant.
+- Utilizing [HACS](https://hacs.xyz/) will allow for easy updates to the custom component.
+- Head to the HACS store, click the ellipse and select custom repositories, add https://github.com/theglus/sensor.drivvo as a new Integration.
+- Click `Explore & Add repositiories` to Install the `Drivvo` integration.
+- Restart Home-Assistant.
 
 ## Manual
 
-- Copie o diretório custom_components/drivvo para o seu diretório <config dir>/custom_components.
+- Copy the `custom_components/drivvo` to your directory `<config dir>/custom_components`.
 - Configure.
-- Reinicie o Home-Assistant.
+- Restart Home-Assistant.
 
-# Configuração
+# Configuration
 
 ```yaml
 - platform: drivvo
   email: your-email
-  password: your-passowrd
-  model: model-vehicle ## Informe o nome do modelo do carro, por exemplo: Jeep Renegade
+  password: your-password
+  model: model-vehicle ## Enter the car model name, for exemple: Jeep Renegade. 
   id_vehicle: id-vehicle
 ```
 
-## Obtendo o id_vehicle
+## Retrieve your vehicle_id
 
-Acesse a página de [login](https://web.drivvo.com/auth/login), abra o console do navegador com o atalho *(CTRL + SHIFT + J)*, selecione a aba **Rede** e selecione a opção **XHR** como mostrado na imagem abaixo:
+Open [login](https://web.drivvo.com/auth/login), launch your browser console using the following shortcut *(CTRL + SHIFT + J)*, select the **Network** tab and choose **XHR** as shown in the image below:
 
 ![example 1](example1.png)
 
-Efetue o login com seu usuário, no console aparecerá uma lista de requisições feitas, pesquise pelas que tem o prefixo **web** como mostrado na imagem abaixo:
+Login to Drivvo, your console will show a list of network requests, select the one with the prefix **web** as show in the image below:
 
 ![example 1](example2.png)
 
-Selecione uma requisição e na aba **Headers** dessa requisição, aparecerá a url acessada, que seguirá esse padrão: https://api.drivvo.com/veiculo/12345/abastecimento/web
+Select the request, and in the **Headers** section of the request the accessed url will appear, which will follow this pattern:: https://api.drivvo.com/veiculo/12345/abastecimento/web
 
-O id do seu veículo será o número que estará no lugar do 12345, utilize ele na sua configuração do drivvo, informando ele no parâmetro **id_vehicle**.
+The id of your vehicle will be the number that will be in place of 12345, use it in your Drivvo configuration, adding it in the parameter **id_vehicle**.
 
-# Construindo um card
+# Building a Lovelace Card
 
-Para visualizar as informações dos drivvo, segue um exemplo de um card. Lembre-se de substituir as entidades presentes no card pelas suas entidades.
+To view your Drivvo information, here is an example of a Lovelace card. Remember to replace the entities on the card with your entities.
 
 
 ```yaml
 type: custom:config-template-card
 entities:
-  - sensor.jeep_renegade_abastecimento # Substitua pelo seu sensor
+  - sensor.jeep_renegade_abastecimento # Replace with your sensor
 card:
   type: entities
   show_header_toggle: 'off'
@@ -73,7 +73,7 @@ card:
                     --ha-card-background: "rgba(0, 0, 0, 0.0)";
                     --ha-card-box-shadow: 'none';
                 }
-              image: /local/images/jeep.png # Substitua pela imagem do seu veículo
+              image: /local/images/jeep.png # Replace with your vehicle's image
             - type: custom:button-card
               layout: icon_name_state2nd
               show_icon: true
@@ -97,7 +97,7 @@ card:
                   - padding: 0px 10px
                   - justify-self: start
                   - color: var(--secondary-text-color)
-              entity: sensor.jeep_renegade_abastecimento # Substitua pelo seu sensor
+              entity: sensor.jeep_renegade_abastecimento # Replace with your sensor
               name: Abastecimentos
               icon: mdi:car
         - type: custom:bar-card
@@ -130,12 +130,12 @@ card:
                 --ha-card-box-shadow: 'none';
             }
           entities:
-            - entity: sensor.jeep_renegade_abastecimento # Substitua pelo seu sensor
+            - entity: sensor.jeep_renegade_abastecimento # Replace with your sensor
               attribute: volume_de_combustivel
           name: Volume de combustível
           entity_row: true
         - type: sensor
-          entity: sensor.jeep_renegade_abastecimento # Substitua pelo seu sensor
+          entity: sensor.jeep_renegade_abastecimento # Replace with your sensor
           attribute: odometro
           graph: line
           detail: 2
@@ -143,7 +143,7 @@ card:
           icon: mdi:car-cruise-control
           unit: km
         - type: sensor
-          entity: sensor.jeep_renegade_abastecimento # Substitua pelo seu sensor
+          entity: sensor.jeep_renegade_abastecimento # Replace with your sensor
           attribute: preco_do_combustivel
           graph: line
           detail: 2
@@ -151,7 +151,7 @@ card:
           icon: mdi:cash
           unit: R$
         - type: sensor
-          entity: sensor.jeep_renegade_abastecimento # Substitua pelo seu sensor
+          entity: sensor.jeep_renegade_abastecimento # Replace with your sensor
           attribute: valor_total_pago
           graph: line
           detail: 2
@@ -159,7 +159,7 @@ card:
           icon: mdi:cash
           unit: R$
         - type: sensor
-          entity: sensor.jeep_renegade_abastecimento # Substitua pelo seu sensor
+          entity: sensor.jeep_renegade_abastecimento # Replace with your sensor
           attribute: soma_total_de_valores_pagos_em_todos_os_abastecimentos
           graph: line
           detail: 2
@@ -167,7 +167,7 @@ card:
           icon: mdi:cash
           unit: R$
         - type: sensor
-          entity: sensor.jeep_renegade_abastecimento # Substitua pelo seu sensor
+          entity: sensor.jeep_renegade_abastecimento # Replace with your sensor
           attribute: km_percorridos_desde_o_ultimo_abastecimento
           graph: line
           detail: 2
