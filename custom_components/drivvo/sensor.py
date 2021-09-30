@@ -72,7 +72,7 @@ def get_data(email, password, id_vehicle):
 
 def setup_platform(hass, config, add_entities, discovery_info=None):
     """Setup the currency sensor"""
-    name = "{} - Abastecimento".format(config["model"])
+    name = "{} - Refueling".format(config["model"])
     email = config["email"]
     password = config["password"]
     model = config["model"]
