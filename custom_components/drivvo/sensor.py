@@ -153,7 +153,7 @@ class DrivvoSensor(Entity):
             "gas_station": self.supply.get("posto_combustivel").get("nome"),
             "type_of_fuel": self.supply.get("combustivel"),
             "reason": self.supply.get("tipo_motivo"),
-            "date_of_refuel": self.supply.get("data"),
+            "date_of_refueling": self.supply.get("data"),
             "volume_of_fuel": self.supply.get("tanques")[0].get("volume"),
             "cost_of_last_refueling": self.supply.get("valor_total"),
             "price_per_gallon": self.supply.get("preco"),
