@@ -176,11 +176,11 @@ card:
           unit: km
 ```
 
-Após a configuração, o card acima ficará com essa aparência:
+After configuration, the card above will look like this:
 
 ![example 1](example3.png)
 
-# Debugando
+# Debugging
 
 ```yaml
 logger:
